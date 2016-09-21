@@ -1,11 +1,11 @@
 package br.com.caelum.servlet;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -38,10 +38,8 @@ public class insereContato extends HttpServlet {
 		ContatoDao dao = new ContatoDao();
 		dao.adiciona(contato);
 		
-		PrintWriter out = response.getWriter();
-		out.println("<html><head><title>Insere Contato</title></head>");
-		out.println("<body><h2>Contato " + contato.getNome() + " inserido com sucesso!</h2></body></html>");
-		
+		RequestDispatcher rd = request.getRequestDispatcher("/listaContatos.jsp");
+		rd.forward(request, response);
 		
 		
 	}
