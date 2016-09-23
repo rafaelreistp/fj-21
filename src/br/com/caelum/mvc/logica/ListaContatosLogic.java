@@ -1,6 +1,7 @@
 package br.com.caelum.mvc.logica;
 
 import java.sql.Connection;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -8,18 +9,15 @@ import javax.servlet.http.HttpServletResponse;
 import br.com.caelum.agenda.dao.ContatoDao;
 import br.com.caelum.agenda.modelo.Contato;
 
-public class RemoveContatoLogic implements Logica {
+public class ListaContatosLogic implements Logica {
 
 	@Override
 	public String executa(HttpServletRequest req, HttpServletResponse res)
 			throws Exception {
 		Connection connection = (Connection) req.getAttribute("conexao");
-		ContatoDao dao = new ContatoDao(connection);
-		Contato contato = new Contato();
-		contato.setId(Long.parseLong(req.getParameter("id")));
-		dao.exclui(contato);
-		
-		return ("mvc?logica=ListaContatosLogic");
+		List<Contato> contatos = new ContatoDao(connection).getLista();
+		req.setAttribute("contatos", contatos);
+		return "WEB-INF/views/listaContatos.jsp";
 	}
 
 }

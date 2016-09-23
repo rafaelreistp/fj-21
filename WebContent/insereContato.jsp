@@ -13,12 +13,12 @@
 		<c:import url="header.jsp"></c:import>
 		
 		<h1>Inserção de contatos </h1>
-		<form action="insereContato" method="post">
+		<form action="mvc" method="post">
+			<input type=text hidden="true" name="logica" value="InsereContatoLogic">
 			Nome: <input type="text" name="nome"/> <br/>
 			Email: <input type="email" name="email"/> <br/>
 			Endereço: <input type="text" name="endereco"/> <br/>
-			Data de Nascimento(dd/MM/yyyy): <caelum:campoData id="dataNascimento"/>
-			
+			Data de Nascimento(dd/MM/yyyy): <caelum:campoData id="dataNascimento"/>	
 			<input type="submit" value="Inserir"/>
 		</form>
 		
